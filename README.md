@@ -24,4 +24,4 @@ yarn add @react-navigation/stack
 yarn start
 ```
 
-_Dentro de la terminar presionar letra i_
+Dentro de la terminar presionar letra **i**
