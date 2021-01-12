@@ -1,6 +1,7 @@
 # RickApp
 
-#Uso
+# Uso
+
 Se debera clonar el repositorio
 `git clone`
 
