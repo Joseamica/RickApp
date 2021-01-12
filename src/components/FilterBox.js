@@ -57,6 +57,8 @@ export default FilterBox;
 
 const styles = StyleSheet.create({
   container: {
+    alignSelf: "center",
+    margin: 10,
     height: 50,
     width: "80%",
     borderRadius: 100,

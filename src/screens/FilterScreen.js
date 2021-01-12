@@ -1,6 +1,12 @@
 import { Picker } from "@react-native-picker/picker";
 import React, { useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import CharBox from "../components/CharBox";
 import FilterBox from "../components/FilterBox";
 
@@ -45,8 +51,12 @@ const FilterScreen = (props) => {
     <>
       {!isLoading ? (
         <View>
-          <FilterBox text="Nombre" />
-          <Picker
+          <FilterBox text="Especie" />
+          <FilterBox text="Estatus" />
+          <FilterBox text="Tipo" />
+          <FilterBox text="Genero" />
+
+          {/* <Picker
             selectedValue={choosenLabel}
             onValueChange={(itemValue, itemIndex) => {
               setChoosenLabel(itemValue);
@@ -57,7 +67,22 @@ const FilterScreen = (props) => {
             <Picker.Item label="React" value="React" />
             <Picker.Item label="Native" value="Native" />
             {items}
-          </Picker>
+          </Picker> */}
+          <TouchableOpacity
+            style={{
+              width: 150,
+              height: 50,
+              backgroundColor: "red",
+              justifyContent: "center",
+              alignSelf: "center",
+              alignItems: "center",
+              borderRadius: 100,
+              margin: 20,
+              alignSelf: "flex-end",
+            }}
+          >
+            <Text style={{ color: "white" }}>Buscar</Text>
+          </TouchableOpacity>
 
           <FlatList
             data={data}

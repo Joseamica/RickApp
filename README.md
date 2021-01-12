@@ -1,11 +1,13 @@
 # RickApp
 
-# Uso
+# Repositorio
 
 Se debera clonar el repositorio
 `git clone git@github.com:Joseamica/RickApp.git`
 
 # Instalaciones.
+
+Para hacer uso de las librerias, se deberan instalar primero. Ejecutar los siguientes comandos.
 
 ```
 yarn global add expo-cli
@@ -19,6 +21,8 @@ yarn add @react-navigation/stack
 ```
 
 # Iniciar App
+
+Para inicializar la app deberas ir a la carpeta RickApp y ejecutar lo siguiente
 
 ```
 yarn start
