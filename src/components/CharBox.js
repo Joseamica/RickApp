@@ -1,24 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import {
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import Feather from "react-native-vector-icons/Feather";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-
-Feather.loadFont();
-MaterialCommunityIcons.loadFont();
-MaterialIcons.loadFont();
-AntDesign.loadFont();
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const CharBox = (props) => {
   const navigation = useNavigation();
@@ -26,34 +9,6 @@ const CharBox = (props) => {
   const [charbox, setCharbox] = React.useState([]);
 
   //DELETe
-  console.log(charbox);
-  const mergeUsers = async (value) => {
-    console.log("run");
-    try {
-      const jsonValue = JSON.stringify(charbox);
-
-      //save first user
-      await AsyncStorage.setItem("@MyApp_user", jsonValue);
-
-      // merge USER_2 into saved USER_1
-      // read merged item
-      const currentUser = await AsyncStorage.getItem("@MyApp_user");
-
-      console.log(currentUser);
-
-      // console.log result:
-      // {
-      //   name: 'Sarah',
-      //   age: 21,
-      //   traits: {
-      //     eyes: 'green',
-      //     hair: 'black'
-      //   }
-      // }
-    } catch (e) {
-      console.log("error" + e);
-    }
-  };
 
   return (
     <TouchableOpacity
@@ -70,8 +25,6 @@ const CharBox = (props) => {
         })
       }
     >
-      <Button title="hola" onPress={null} onPressIn={null} />
-
       <Image
         source={{
           uri: props.imageSrc,
@@ -105,7 +58,7 @@ const CharBox = (props) => {
         >
           <Ionicons
             name={icon ? "heart" : "heart-outline"}
-            size={32}
+            size={25}
             color="red"
           />
         </TouchableOpacity>

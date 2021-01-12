@@ -1,10 +1,8 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   Image,
   Text,
@@ -13,8 +11,9 @@ import {
 } from "react-native";
 import { SearchBar } from "react-native-elements";
 import CharBox from "./src/components/CharBox";
+import FilterScreen from "./src/screens/FilterScreen";
 
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation, s }) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
@@ -52,26 +51,6 @@ function HomeScreen({ navigation }) {
       .finally(() => setLoading(false));
   }, []);
 
-  const mergeUsers = async () => {
-    console.log("run");
-    try {
-      const currentUser = await AsyncStorage.getItem("@MyApp_user");
-
-      console.log(currentUser);
-
-      // console.log result:
-      // {
-      //   name: 'Sarah',
-      //   age: 21,
-      //   traits: {
-      //     eyes: 'green',
-      //     hair: 'black'
-      //   }
-      // }
-    } catch (e) {
-      console.log("error" + e);
-    }
-  };
   return (
     <View>
       {!isLoading ? (
@@ -95,14 +74,11 @@ function HomeScreen({ navigation }) {
               margin: 20,
               alignSelf: "flex-end",
             }}
-            onPress={mergeUsers}
+            onPress={() => navigation.navigate("Filter")}
           >
             <Text style={{ color: "white" }}>Filter</Text>
           </TouchableOpacity>
-          <Button
-            title="Favorites"
-            onPress={() => navigation.navigate("Favorites")}
-          />
+
           <FlatList
             data={filteredDataSource}
             keyExtractor={(id, index) => index.toString()}
@@ -129,7 +105,6 @@ function HomeScreen({ navigation }) {
 
 function DetailsScreen({ navigation, route }) {
   const { name, type, image, status, genre, specie } = route.params;
-  console.log(image);
   return (
     <View style={{ margin: 20, justifyContent: "space-evenly", flex: 1 }}>
       <Image
@@ -166,20 +141,6 @@ function DetailsScreen({ navigation, route }) {
   );
 }
 
-function Favorites(props) {
-  return (
-    <>
-      {props.n ? (
-        <View>
-          <CharBox />
-        </View>
-      ) : (
-        <Text>null</Text>
-      )}
-    </>
-  );
-}
-
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -189,7 +150,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
 
         <Stack.Screen name="Character" component={DetailsScreen} />
-        <Stack.Screen name="Favorites" component={Favorites} />
+        <Stack.Screen name="Filter" component={FilterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
